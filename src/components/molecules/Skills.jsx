@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import FontContext from '../../FontContext';
 
 const Skills = ({ data, setData, isEditMode }) => {
+  const { fontSize, fontColor, fontWeight} = useContext(FontContext);
+  
   const [skill, setSkill] = useState('');
   const [editable, setEditable] = useState(new Array(data.skills.length).fill(false));
   const [currSkill, setCurrSkill] = useState('');
@@ -32,7 +35,7 @@ const Skills = ({ data, setData, isEditMode }) => {
 
   return (
     <div>
-      <h3>Skills</h3>
+      <h3 style={{ fontSize, color: fontColor, fontWeight }}>Skills</h3>
       <ul>
         {data.skills.slice(0, 5).map((i, idx) => <li key={i}>
           {editable[idx] ? <input type="text" value={currSkill} onChange={e => setCurrSkill(e.target.value)} /> : i}

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Skills from '../molecules/Skills'
 import Education from '../molecules/Education'
 import Experience from '../molecules/Experience'
+import ThemeContext from '../../ThemeContext'
 
-const Resume = ({ data, theme, dispatch, isEditMode }) => {
+const Resume = ({ data, dispatch, isEditMode }) => {
+    const theme = useContext(ThemeContext);
+
     function handlePrint() {
         window.print();
     }

@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import FontContext from '../../FontContext';
 
 const Experience = ({ data, setData, isEditMode }) => {
+  const { fontSize, fontColor, fontWeight} = useContext(FontContext);
+
   const [exp, setExp] = useState({ year: '', company: '', role: '' });
 
   function handleAddExp(e) {
@@ -15,7 +18,7 @@ const Experience = ({ data, setData, isEditMode }) => {
 
   return (
     <div>
-      <h3>Experience</h3>
+      <h3 style={{ fontSize, color: fontColor, fontWeight }}>Experience</h3>
       <ul>
         {data.experience.slice(0, 5).map(i => <li key={i.id}>
           {i.role} at {i.company} - {i.year}
