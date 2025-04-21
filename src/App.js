@@ -1,23 +1,17 @@
-import logo from './logo.svg';
+import { useState, useReducer } from 'react';
+import Resume from './components/organisms/Resume';
+import reducer, { initialState } from './resumeReducer';
 import './App.css';
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  // const [resumeData, setResumeData] = useState(resumeDataOg);
+  const [isEditMode, setEditMode] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button style={{ float: 'right' }} onClick={() => setEditMode(!isEditMode)}>{isEditMode ? "Close" : "Edit"}</button>
+      <Resume data={state.resumeData} dispatch={dispatch} theme='dark' isEditMode={isEditMode} />
     </div>
   );
 }
